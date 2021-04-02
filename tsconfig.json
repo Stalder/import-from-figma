@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "noEmit": true,
-    "strict": true
+    "noEmit": false,
+    "strict": true,
+    "outDir": "build"
   }
 }

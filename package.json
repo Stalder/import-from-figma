@@ -4,7 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
-    "update": "ts-node src/index.ts"
+    "update": "ts-node src/index.ts",
+    "compile": "tsc -p ./"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
