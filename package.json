@@ -1,7 +1,7 @@
 {
   "name": "import-from-figma",
   "version": "1.0.0",
-  "main": "build/index.ts",
+  "main": "build/index.js",
   "license": "MIT",
   "scripts": {
     "update": "ts-node src/index.ts",
