@@ -36,37 +36,31 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.importFromFigma = void 0;
-var dsl_1 = require("./dsl");
-var flutter_generator_1 = require("./flutter/flutter_generator");
-var resource_1 = require("./flutter/resource");
-var loader_1 = require("./loader");
-var react_generator_1 = require("./react/react_generator");
-var resource_2 = require("./react/resource");
-function importFromFigma(config) {
+exports.writeIcons = void 0;
+var resource_1 = require("./resource");
+var currentColor = 'black';
+var currentColorRegexp = new RegExp(currentColor, 'g');
+function formatComponentName(name) {
+    var words = name
+        .replace(/[^a-z0-9]+/gi, ' ')
+        .trim()
+        .split(' ');
+    return words.map(function (word) { return word.slice(0, 1).toLocaleUpperCase() + word.slice(1); }).join('');
+}
+function saveIcon(name, text) {
+    if (!text) {
+        console.log("incorrect icon: " + name);
+        return;
+    }
+    var fileName = formatComponentName(name);
+    resource_1.saveIconSvg(fileName, text);
+}
+function writeIcons(icons) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, _a, typography, colors, icons;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0:
-                    loader_1.initializeLoader(config);
-                    return [4 /*yield*/, loader_1.loadRoot()];
-                case 1:
-                    data = (_b.sent()).data;
-                    return [4 /*yield*/, dsl_1.generateDSL(data)];
-                case 2:
-                    _a = _b.sent(), typography = _a.typography, colors = _a.colors, icons = _a.icons;
-                    if (config.exportType == 'react') {
-                        resource_2.initializeReactResource(config);
-                        react_generator_1.generateReactArtifacts(typography, colors, icons);
-                    }
-                    else if (config.exportType == 'flutter') {
-                        resource_1.initializeFlutterResource(config);
-                        flutter_generator_1.generateFlutterArtifacts(typography, colors, icons);
-                    }
-                    return [2 /*return*/];
-            }
+        return __generator(this, function (_a) {
+            Object.keys(icons).forEach(function (key) { return saveIcon(key, icons[key]); });
+            return [2 /*return*/];
         });
     });
 }
-exports.importFromFigma = importFromFigma;
+exports.writeIcons = writeIcons;
