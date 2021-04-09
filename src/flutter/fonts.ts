@@ -15,7 +15,8 @@ function formatFont(fontNode: Typography) {
 }
 
 function parseColorName(fullName: string) {
-  return camelCase(fullName.replace(/[ -/%()+#,".]+/g, ''))
+  const fullNameWithoutSize = fullName.split('-')[0].trim()
+  return camelCase(fullNameWithoutSize.replace(/[ /%()+#,".]+/g, ''))
 }
 
 async function writeFonts(typographies: Typography[],) {
