@@ -6,7 +6,7 @@ function formatFont(fontNode: Typography) {
   const { italic, fontWeight, fontSize, lineHeightPx, fontFamily } = fontNode
 
   return `TextStyle(
-        fontFamily: '${fontFamily}',
+        fontFamily: '${fontFamily.replace(' ', '-')}',
         fontSize: ${fontSize},
         fontWeight: FontWeight.w${fontWeight},
         color: textColor,
@@ -30,9 +30,6 @@ async function writeFonts(typographies: Typography[],) {
 import 'package:flutter/widgets.dart';
 
 class TextThemeValues {
-  static const sfText = 'SF-Text';
-  static const sfDisplay = 'SF-Display';
-
   final Color textColor;
 
   TextThemeValues({@required this.textColor});
