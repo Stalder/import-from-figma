@@ -30,10 +30,10 @@ async function writeFonts(typographies: Typography[],) {
 
 import 'package:flutter/widgets.dart';
 
-class TextThemeValues {
+class FigmaTypography {
   final Color textColor;
 
-  TextThemeValues({@required this.textColor});
+  FigmaTypography({@required this.textColor});
 
 ${typographyProps}
 }
