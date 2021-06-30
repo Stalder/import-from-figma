@@ -1,6 +1,6 @@
-import { Typography } from '../dsl'
-import { saveFonts } from './resource'
 import { camelCase } from 'change-case';
+import { Typography } from '../dsl';
+import { saveFonts } from './resource';
 
 function formatFont(fontNode: Typography) {
   const { italic, fontWeight, fontSize, lineHeightPx, fontFamily } = fontNode
@@ -9,7 +9,6 @@ function formatFont(fontNode: Typography) {
         fontFamily: '${fontFamily.replace(' ', '-')}',
         fontSize: ${fontSize},
         fontWeight: FontWeight.w${fontWeight},
-        color: textColor,
         letterSpacing: 0,
       )`
 }
@@ -22,7 +21,7 @@ function parseColorName(fullName: string) {
 async function writeFonts(typographies: Typography[],) {
   const typographyProps = typographies
     .map(
-      (node) => `  TextStyle get ${parseColorName(node.name)} => ${formatFont(node)};`
+      (node) => `  static const ${parseColorName(node.name)} => ${formatFont(node)};`
     )
     .join('\n\t')
 
@@ -31,14 +30,11 @@ async function writeFonts(typographies: Typography[],) {
 import 'package:flutter/widgets.dart';
 
 class FigmaTypography {
-  final Color textColor;
-
-  FigmaTypography({@required this.textColor});
-
 ${typographyProps}
 }
 `
   saveFonts('figma_typography', content)
 }
 
-export { writeFonts }
+export { writeFonts };
+
